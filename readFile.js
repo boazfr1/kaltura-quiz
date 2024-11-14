@@ -20,7 +20,7 @@ let daysInMonth = {
 };
 
 app.get('/info/:date', async (req, res) => {
-    const date = req.params.date;  // Extract the date parameter from the URL
+    const date = req.params.date;
     try {
         const result = await getRevenueAndUnreservedCapacity("./DataFile.csv", date);
         res.send(result);
@@ -45,11 +45,11 @@ const getRevenueAndUnreservedCapacity = (filePath, date) => {
                 let revenue = calculateRevenue(CSVInfo, date);
                 let unreservedCapacity = calculateUnreservedCapacity(CSVInfo, date);
                 const result = `${date}: expected revenue: ${revenue} expected total capacity of the unreserved offices: ${unreservedCapacity}`;
-                resolve(result);  // Resolve the promise with the result
+                resolve(result);
             })
             .on("error", (error) => {
                 console.error(error.message);
-                reject(error);  // Reject the promise on error
+                reject(error);
             });
     });
 };
